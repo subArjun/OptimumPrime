@@ -55,8 +55,6 @@ RUN echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc \
     && echo "source ${ROS_WS}/install/setup.bash" >> ~/.bashrc \
     && echo "export ROS_DOMAIN_ID=2" >> ~/.bashrc \
     && echo "export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp" >> ~/.bashrc
-
-ENV ROS_DOMAIN_ID=2
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 # Copy configuration and launch files if necessary
