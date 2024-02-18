@@ -58,7 +58,7 @@ RUN echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc \
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 # Copy configuration and launch files if necessary
-COPY tags_36h11_filter.yaml ${ROS_WS}/src/apriltag_ros/apriltag_ros/cfg/
+#COPY tags_36h11_filter.yaml ${ROS_WS}/src/apriltag_ros/apriltag_ros/cfg/
 #COPY tag_realsense.launch.py ${ROS_WS}/src/apriltag_ros/apriltag_ros/launch/
 #RUN chmod +x ${ROS_WS}/src/apriltag_ros/apriltag_ros/launch/tag_realsense.launch.py
 
