@@ -1,3 +1,4 @@
+# pylint: skip-file
 from setuptools import setup
 
 package_name = 'apriltag_ros2'
