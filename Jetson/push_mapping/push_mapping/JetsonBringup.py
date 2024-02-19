@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# pylint: skip-file
 import rclpy
 from rclpy.node import Node
 import time

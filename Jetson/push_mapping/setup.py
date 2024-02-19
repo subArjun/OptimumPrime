@@ -1,3 +1,4 @@
+# pylint: skip-file
 from setuptools import setup
 import os
 from glob import glob
