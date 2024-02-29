@@ -29,11 +29,11 @@ class jetsonBringup(Node):
         self.linear = 0.0
         self.angular = 0.0
         #PID gains
-        self.p_l = 3
+        self.p_l = 9
         self.i_l = 0.0
         self.d_l = 0.0
         
-        self.p_a = 3
+        self.p_a = 9
         self.i_a = 0.0
         self.d_a = 0.0
 
