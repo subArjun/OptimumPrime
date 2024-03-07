@@ -4,6 +4,10 @@ from rclpy.node import Node
 import time
 import json
 import serial
+import websocket
+import ssl
+import json
+import asyncio
 
 class fulfillment_robot(Node):
     def __init__(self):
@@ -14,7 +18,21 @@ class fulfillment_robot(Node):
         
         self.record_list = []
         self.arduino = serial.Serial('/dev/arduino', 9600)
-        
+
+        self.ws = websocket.WebSocket(sslopt={"cert_reqs": ssl.CERT_NONE})  # connect to gyropalm web socket server at port 3200
+        self.ws.connect("wss://gyropalm.com:3200")
+
+        welcomeMessage = self.ws.recv()  # save result of receiving message into variable called welcomeMessage
+        welcomeMessage = json.loads(welcomeMessage)  # convert the result from json into a String
+        print("\n%s\n" % welcomeMessage)  # print the message received from the web socket, which asks for GyroPalm credentials
+        authorizationMessage = json.dumps({'action':"sub", 'wearableID':"gp20906498", 'apiKey':"gp57277569125c1b08"}, sort_keys = True, indent = 4) # save the matching authorization message into variable called authorizationMessage
+        print("%s\n" % authorizationMessage) # print authorization message
+        self.ws.send(authorizationMessage) # send authorization message including action, wearableID and apiKey of wearable
+        confirmationMessage = self.ws.recv() #receive confirmation message from GyroPalm web socket server
+        confirmationMessage = json.loads(confirmationMessage) # convert the result from json into a String
+        print("%s\n" % confirmationMessage) # print the message received from the web socket server, which confirms the connection
+
+        self.timer = self.create_timer(1,self.timer_action)
         #self.pick_black()
         self.mc.send_angles(*self.init_pose)
         self.pick_blue()
@@ -23,7 +41,31 @@ class fulfillment_robot(Node):
         self.mc.send_angles(*self.init_pose)
         self.pick_red()
         self.mc.send_angles(*self.init_pose)
-    
+
+    def timer_action(self):
+        msg = self.ws.recv()
+        msg = json.loads(msg)
+        print("%s" % msg)
+        self.order = msg["gp10222509"]  # if Home button is pressed on wearable, send robot to Home position
+        self.order = self.order.split(",")
+        for marker in self.order:
+            if (marker == "apples"):
+                self.mc.send_angles(*self.init_pose)
+                self.pick_black()
+                self.mc.send_angles(*self.init_pose)
+            elif (marker == "oranges"):
+                self.mc.send_angles(*self.init_pose)
+                self.pick_blue()
+                self.mc.send_angles(*self.init_pose)
+            elif (marker == "bananas"):
+                self.mc.send_angles(*self.init_pose)
+                self.pick_green()
+                self.mc.send_angles(*self.init_pose)
+            elif (marker == "grapes"):
+                self.mc.send_angles(*self.init_pose)
+                self.pick_red()
+                self.mc.send_angles(*self.init_pose)
+
     def pick_black(self):
         f = open("/home/er/ros2_ws/src/package_loader/package_loader/black.txt", "r")
         data = json.load(f)
