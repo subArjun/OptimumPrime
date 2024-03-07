@@ -33,14 +33,14 @@ class fulfillment_robot(Node):
         print("%s\n" % confirmationMessage) # print the message received from the web socket server, which confirms the connection
 
         self.timer = self.create_timer(1,self.timer_action)
-        #self.pick_black()
-        self.mc.send_angles(*self.init_pose)
-        self.pick_blue()
-        self.mc.send_angles(*self.init_pose)
-        self.pick_green()
-        self.mc.send_angles(*self.init_pose)
-        self.pick_red()
-        self.mc.send_angles(*self.init_pose)
+        # #self.pick_black()
+        # self.mc.send_angles(*self.init_pose)
+        # self.pick_blue()
+        # self.mc.send_angles(*self.init_pose)
+        # self.pick_green()
+        # self.mc.send_angles(*self.init_pose)
+        # self.pick_red()
+        # self.mc.send_angles(*self.init_pose)
 
     def timer_action(self):
         msg = self.ws.recv()
