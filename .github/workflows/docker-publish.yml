@@ -13,7 +13,14 @@ jobs:
     name: Build Docker image and push to repositories
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: ./Jetson/AprilTag/
+            image: assubram/apriltag:latest
+          - dockerfile: ./Jetson/Mapping_Docker/
+            image: assubram/mapping:latest
     # steps to perform in job
     steps:
       - name: Checkout code
@@ -35,23 +42,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           # relative path to the place where source code with Dockerfile is located
-          context: ./Jetson/AprilTag
+          context: ${{ matrix.dockerfile }}
           # Note: tags has to be all lower-case
-          tags: |
-            assubram/apriltag:latest
+          tags: ${{ matrix.image }}
           # build on feature branches, push only on main branch
           push: true
 
-      - name: Build image and push to Docker Hub and GitHub Container Registry
-        uses: docker/build-push-action@v2
-        with:
-          # relative path to the place where source code with Dockerfile is located
-          context: ./Jetson/Mapping_Docker
-          # Note: tags has to be all lower-case
-          tags: |
-            assubram/mapping:latest
-          # build on feature branches, push only on main branch
-          push: true
 
        
 
