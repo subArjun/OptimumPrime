@@ -1,6 +1,8 @@
 # Step 1: Base Image
 FROM osrf/ros:foxy-desktop
 
+SHELL ["/bin/bash", "-c"]
+
 # Step 2: Dependencies
 # Update and install system dependencies
 RUN apt-get update && apt-get install -y \
