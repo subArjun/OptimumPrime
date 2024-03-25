@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
 # ROS2 dependencies
 RUN apt-get update && apt-get install -y \
     ros-foxy-xacro \
+    ros-foxy-rmw-cyclonedds-cpp \
     ros-foxy-robot-state-publisher \
     ros-foxy-joint-state-publisher \
     ros-foxy-rtabmap-ros \
