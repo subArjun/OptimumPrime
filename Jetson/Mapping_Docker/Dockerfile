@@ -18,20 +18,29 @@ RUN apt-get update && apt-get install -y \
     ros-foxy-rtabmap-ros \
     ros-foxy-nav2-bringup \
     ros-foxy-slam-toolbox \
+    ros-foxy-realsense2-camera \
     # Add more ROS2 package dependencies as needed
     && rm -rf /var/lib/apt/lists/*
 
 # Step 3: Copy Your Package and ros_entrypoint.sh
-COPY ./push_mapping /ros2_ws/src/push_mapping
+WORKDIR /ros2_ws/src
+
+# Clone the sllidar_ros2 package
+RUN git clone https://github.com/Slamtec/sllidar_ros2.git
+
+# Copy your custom package
+COPY ./push_mapping ./push_mapping
+
+# Step 4: Build Your Package and sllidar_ros2
+WORKDIR /ros2_ws
+RUN . /opt/ros/foxy/setup.sh && \
+    colcon build --symlink-install
 COPY ros_entrypoint.sh /
 
 # Make ros_entrypoint.sh executable
 RUN chmod +x /ros_entrypoint.sh
 
-# Step 4: Build Your Package
-WORKDIR /ros2_ws
-RUN . /opt/ros/foxy/setup.sh && \
-    colcon build --symlink-install
+
 
 # Step 5: Set the entrypoint script
 ENTRYPOINT ["/ros_entrypoint.sh"]
