@@ -39,14 +39,14 @@ COPY ./push_mapping ./push_mapping
 WORKDIR /ros2_ws
 RUN . /opt/ros/foxy/setup.sh && \
     colcon build --symlink-install
-COPY ros_entrypoint.sh /
+COPY ros-entrypoint.sh /
 
 # Make ros_entrypoint.sh executable
-RUN chmod +x /ros_entrypoint.sh
+RUN chmod +x /ros-entrypoint.sh
 
 
 
 # Step 5: Set the entrypoint script
-ENTRYPOINT ["/ros_entrypoint.sh"]
+ENTRYPOINT ["/ros-entrypoint.sh"]
 CMD ["/bin/bash"]
 
