@@ -6,9 +6,13 @@ SHELL ["/bin/bash", "-c"]
 # Step 2: Dependencies
 # Update and install system dependencies
 RUN apt-get update && apt-get install -y \
+    python3-pip \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip3 install \
+    pyserial  # Install pyserial
+    
 # ROS2 dependencies
 RUN apt-get update && apt-get install -y \
     ros-foxy-xacro \
