@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="optimum_prime">
+  <xacro:property name="base_width" value="0.285"/>
+  <xacro:property name="base_length" value="0.555"/>
+  <xacro:property name="base_height" value="0.11"/>
+  <xacro:property name="collision" value="0.1"/>
+
+  <xacro:property name="wheel_radius" value="0.10"/>
+  <xacro:property name="wheel_width" value="0.05"/>
+  <xacro:property name="wheel_ygap" value="0.026"/>
+  <xacro:property name="wheel_zoff" value="0.02"/>
+
+
+  <xacro:property name="caster_xoff" value="0.16"/>
+
+  <!-- Material Properties -->
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="silver">
+    <color rgba="0.8 0.8 0.8 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+  
+    <!-- Robot Base -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${base_length+collision} ${base_width+collision} ${base_height}"/>
+      </geometry>
+    </collision>
+  </link>
+
+   <!-- Robot Footprint -->
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0.0 0.0 ${-(wheel_radius+wheel_zoff)}" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Wheels -->
+  <!-- Wheel Description -->
+<!-- Left Wheel -->
+  <link name="left_wheel_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/> <!-- Match this with joint origin -->
+      <geometry>
+        <cylinder radius="0.10" length="0.05"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+    <origin xyz="0 0.15 -0.02" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+<!-- Right Wheel -->
+  <link name="right_wheel_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/> <!-- Match this with joint origin -->
+      <geometry>
+        <cylinder radius="0.10" length="0.05"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
+    <origin xyz="0 -0.15 -0.02" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+
+  
+  <!-- Castor Wheels -->
+  <!-- Front Castor -->
+  <link name="front_castor">
+    <visual>
+      <geometry>
+        <sphere radius="0.03"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="${wheel_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="front_castor_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_castor"/>
+    <origin xyz="${caster_xoff} 0 -${wheel_zoff}" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rear Castor -->
+  <link name="rear_castor">
+    <visual>
+      <geometry>
+        <sphere radius="0.03"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="${wheel_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rear_castor_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_castor"/>
+    <origin xyz="-${caster_xoff} 0 -${wheel_zoff}" rpy="0 0 0"/>
+  </joint>
+
+  <!-- LiDAR -->
+  <link name="base_scan">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.02"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.035" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Fixed Joint for LiDAR -->
+  <joint name="base_scan_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+    <origin xyz="0.25 0 0.06" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Camera -->
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.03 0.07 0.03"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.03 0.07 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Fixed Joint for Camera -->
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0.2775 0 0" rpy="0 0 0"/>
+  </joint>
+  
+  
+
+</robot>
+

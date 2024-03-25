@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="push_mapping">
+
+	<material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+  
+  <material name="silver">
+    <color rgba="0.8 0.8 0.8 1.0"/>
+  </material>
+  
+  
+	<link name='base_link'>
+		<visual>
+			<geometry>
+				<box size='0.090 0.120 0.063'/>
+			</geometry>
+			<material name='cyan'>
+				<color rgba='0 1.0 1.0 1.0'/>
+			</material>
+		</visual>
+		<collision>
+      <geometry>
+      	<box size='0.090 0.120 0.063'/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0.0 0.0 -0.0315" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- LiDAR -->
+  <link name="base_scan">
+    <visual>
+      <geometry>
+        <cylinder radius="0.035" length="0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.035" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Fixed Joint for LiDAR -->
+  <joint name="base_scan_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+    <origin xyz="0 0 0.04" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- Camera -->
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.03 0.07 0.03"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.03 0.07 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Fixed Joint for Camera -->
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0.06 0 0" rpy="0 0 0"/>
+  </joint>
+</robot>
+     
