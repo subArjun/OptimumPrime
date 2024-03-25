@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     ros-foxy-rmw-cyclonedds-cpp \
     ros-foxy-robot-state-publisher \
     ros-foxy-joint-state-publisher \
+    ros-foxy-robot-localization \
     ros-foxy-rtabmap-ros \
     ros-foxy-nav2-bringup \
     ros-foxy-slam-toolbox \
