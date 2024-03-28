@@ -10,9 +10,7 @@ RUN apt-get update && apt-get install -y \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install \
-    pyserial \
-    symlink# Install pyserial
+RUN pip3 install pyserial symlink
     
 # ROS2 dependencies
 RUN apt-get update && apt-get install -y \
