@@ -19,15 +19,7 @@ def generate_launch_description():
     robot_description = xacro.process_file(urdf_file_path).toxml()
 	#launch description
     #Robot state publisher node which publishes the tf tree for the robot based on the provided description file
-    usb_command = ExecuteProcess(
-    	cmd=[['echo team13 | sudo -S chmod 0777 /dev/ttyUSB*']],
-    	shell=True,
-    )
-
-    arduino_command = ExecuteProcess(
-    	cmd=[['echo team13 | sudo -S chmod 0777 /dev/arduino']],
-    	shell=True,
-    )
+   
 
 
     description = Node(
@@ -167,8 +159,6 @@ def generate_launch_description():
         
         
     return LaunchDescription([
-        usb_command,
-        arduino_command,
     	description,
         jointState,
         lidar,
