@@ -1,5 +1,5 @@
 # Step 1: Base Image
-FROM osrf/ros:foxy-desktop
+FROM ros:foxy
 
 SHELL ["/bin/bash", "-c"]
 
