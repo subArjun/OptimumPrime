@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         product1.setOnClickListener {
             if (orderList.count() <= 4){
-                orderList.add("Apples\n")
+                orderList.add("Red\n")
                 text.text = orderList.toString().trim('[').trim(']').filterNot { it == ',' }.trimIndent()
             }
             else {
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         product2.setOnClickListener {
             if (orderList.count() <= 4){
-                orderList.add("Bananas\n")
+                orderList.add("Blue\n")
                 text.text = orderList.toString().trim('[').trim(']').filterNot { it == ',' }.trimIndent()
             }
             else {
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
         product3.setOnClickListener {
             if (orderList.count() <= 4){
-                orderList.add("Grapes\n")
+                orderList.add("Green\n")
                 text.text = orderList.toString().trim('[').trim(']').filterNot { it == ',' }.trimIndent()
             }
             else {
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         product4.setOnClickListener {
             if (orderList.count() <= 4){
-                orderList.add("Oranges\n")
+                orderList.add("Black\n")
                 text.text = orderList.toString().trim('[').trim(']').filterNot { it == ',' }.trimIndent()
             }
             else {

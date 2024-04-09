@@ -9,8 +9,9 @@
 
     <ImageButton
         android:id="@+id/product1"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:scaleType="centerInside"
+        android:layout_width="56dp"
+        android:layout_height="74dp"
         android:background="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@android:drawable/ic_lock_idle_charging" />
+        app:srcCompat="@drawable/red_marker" />
 
     <ImageButton
         android:id="@+id/deleteButton"
@@ -35,8 +36,9 @@
 
     <ImageButton
         android:id="@+id/product4"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:scaleType="centerInside"
+        android:layout_width="55dp"
+        android:layout_height="74dp"
         android:background="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@android:drawable/ic_menu_preferences" />
+        app:srcCompat="@drawable/black_marker" />
 
 
     <TextView
@@ -80,8 +82,10 @@
 
     <ImageButton
         android:id="@+id/product2"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+
+        android:scaleType="centerInside"
+        android:layout_width="56dp"
+        android:layout_height="74dp"
         android:background="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,12 +93,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@android:drawable/ic_menu_directions" />
+        app:srcCompat="@drawable/blue_marker" />
 
     <ImageButton
         android:id="@+id/product3"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:scaleType="centerInside"
+        android:layout_width="56dp"
+        android:layout_height="74dp"
         android:background="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +107,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@android:drawable/ic_dialog_map" />
+        app:srcCompat="@drawable/green_marker" />
 
     <ImageButton
         android:id="@+id/orderButton"
