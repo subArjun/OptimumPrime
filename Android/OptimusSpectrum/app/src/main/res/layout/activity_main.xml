@@ -9,17 +9,18 @@
 
     <ImageButton
         android:id="@+id/product1"
-        android:scaleType="centerInside"
-        android:layout_width="56dp"
+        android:layout_width="55dp"
         android:layout_height="74dp"
+        android:scaleType="centerInside"
         android:background="@drawable/background"
+        app:srcCompat="@drawable/red_marker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.975"
-        app:srcCompat="@drawable/red_marker" />
+         />
 
     <ImageButton
         android:id="@+id/deleteButton"
